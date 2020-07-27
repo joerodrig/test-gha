@@ -6,8 +6,8 @@ on:
     types: [labeled]
 jobs:
   destroy-staging:
-    runs-on: ubuntu-latest
     if: contains(github.event.pull_request.labels.*.name, 'tested-in-staging')
+    runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
       with:
