@@ -14,7 +14,7 @@ jobs:
         ref: ${{ github.event.pull_request.base.ref }}
     - name: Set formatted environment name
       run: |
-        if: contains(github.event.pull_request.labels.*.name, 'test-label')
+        echo github.event.pull_request.labels.*.name
         LOWERCASE_NAME="$(echo ${GITHUB_REF} | tr '[A-Z]' '[a-z]')"
         echo "::set-env name=ENV_NAME::$LOWERCASE_NAME"
     - name: Announce branch
