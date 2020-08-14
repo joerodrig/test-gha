@@ -17,4 +17,7 @@ jobs:
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@v3
         with:
+          title: Release to production
+          body: This is an automated release PR. When you're ready to release, approve and `Merge Commit` this PR
           branch: master-promotion
+          draft: true
