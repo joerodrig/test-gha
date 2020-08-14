@@ -1,4 +1,4 @@
-name: Create a PR to deploy to master from staging
+name: Create a PR to deploy to master from staging.
 on:
   push:
     branches:
