@@ -1,20 +1,20 @@
-name: Create a PR to deploy to master from staging..
+name: Create production promotion pull request.
 on:
   push:
     branches:
       - staging
 jobs:
-  productionPR:
+  productionPromotion:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
         with:
-          ref: staging
+          ref: master
+      - name: Reset promotion branch
+        run: |
+          git fetch origin staging:staging
+          git reset --hard staging
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@v3
         with:
-          branch: a-test-branch
-          commit-message: Releasing to prod
-          title: Release
-          body: A prod release
-          draft: true
+          branch: master-promotion
