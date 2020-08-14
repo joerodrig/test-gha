@@ -5,18 +5,18 @@ on:
       - master
     types: [labeled]
 jobs:
-  build:
+  destroy-staging:
+    if: contains(github.event.pull_request.labels.*.name, 'tested-in-staging')
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
-
       with:
-        token: 5b86090fdda4a86c8766decd4f9fa5954ca0406a
+        token: ${{secrets.GHA}}
         ref: ${{ github.event.pull_request.base.ref }}
     - name: Set formatted environment name
       run: |
-        if: contains(github.event.pull_request.labels.*.name, 'test-label')
-        LOWERCASE_NAME="$(echo ${GITHUB_REF} | tr '[A-Z]' '[a-z]')"
+      
+        LOWERCASE_NAME="$(echo ${{github.event.number}} | tr '[A-Z]' '[a-z]')"
         echo "::set-env name=ENV_NAME::$LOWERCASE_NAME"
     - name: Announce branch
       run: echo branch $ENV_NAME
