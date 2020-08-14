@@ -9,9 +9,12 @@ jobs:
     steps:
       - uses: actions/checkout@v2
         with:
-          ref: master
-      - name: Create pull request
-        uses: thomaseizinger/create-pull-request@master
+          ref: staging
+      - name: Create Pull Request
+        uses: peter-evans/create-pull-request@v3
         with:
-          branch: staging
-          title: "An automatically created PR!"
+          branch: a-test-branch
+          commit-message: Releasing to prod
+          title: Release
+          body: A prod release
+          draft: true
