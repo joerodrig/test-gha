@@ -9,15 +9,9 @@ jobs:
     steps:
       - uses: actions/checkout@v2
         with:
-          ref: staging
-      # - name: Reset promotion branch
-      #   run: |
-      #     git fetch origin staging:staging
-      #     git reset --hard staging
-      - name: Create Pull Request
-        uses: peter-evans/create-pull-request@v3
-        with:
-          branch: staging-promotion
-          commit-message: Releasing to prod
-          title: Release
-          body: A prod release
+          ref: master
+    - name: Create pull request
+      uses: thomaseizinger/create-pull-request@master
+      with:
+        branch: staging
+        title: "An automatically created PR!"
