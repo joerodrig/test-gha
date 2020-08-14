@@ -9,10 +9,10 @@ jobs:
     steps:
     - uses: actions/checkout@v2
       with:
-        ref: staging
+        ref: master
     - name: Create Pull Request
       uses: peter-evans/create-pull-request@v3
       with:
         title: Push to prod
         body: Release
-        branch: master
+        branch: staging
